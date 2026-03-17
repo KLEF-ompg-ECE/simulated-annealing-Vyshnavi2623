@@ -1,9 +1,9 @@
 # Assignment 1 — Simulated Annealing: Exam Timetable Scheduling
 ## Observation Report
 
-Student Name  : Bonagiri Rekha Ruthika
-Student ID    : 2310040021 
-Date Submitted: 15-03-2026 
+Student Name  : BonBon Vyshnavi
+Student ID    : 2310040012
+Date Submitted: 17-03-2026 
 
 ---
 
