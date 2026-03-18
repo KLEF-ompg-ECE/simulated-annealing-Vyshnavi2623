@@ -1,81 +1,98 @@
 # Assignment 1 — Simulated Annealing: Exam Timetable Scheduling
+
 ## Observation Report
 
-Student Name  : BonBon Vyshnavi
-Student ID    : 2310040012
-Date Submitted: 17-03-2026 
-
----
-
-## How to Submit
-
-1. Run each experiment following the instructions below
-2. Fill in every answer box — do not leave placeholders
-3. Make sure the plots/ folder contains all required images
-4. Commit this README and the plots/ folder to your GitHub repo
+**Student Name:** BonBon Vyshnavi
+**Student ID:** 2310040012
+**Date Submitted:** 17-03-2026
 
 ---
 
 ## Before You Begin — Read the Code
 
-Open sa_timetable.py and read through it. Then answer these questions.
+### Q1. What does `count_clashes()` measure? What value means a perfect timetable?
 
-Q1. What does `count_clashes()` measure? What value means a perfect timetable?
+The function `count_clashes()` calculates the number of exam conflicts for students.
+A clash occurs when a student has more than one exam scheduled in the same time slot.
+A value of **0** means a perfect timetable with no clashes.
 
-The count_clashes() function calculates the total number of exam scheduling conflicts among students. A clash occurs when a student has two or more exams scheduled in the same time slot. The function checks each student's exam list and counts how many times the same slot appears. A value of 0 means a perfect timetable with no conflicts.
+---
 
-Q2. What does `generate_neighbor()` do? How is the new timetable different from the current one?
+### Q2. What does `generate_neighbor()` do?
 
-The generate_neighbor() function creates a slightly modified timetable from the current timetable. It randomly selects one exam and moves it to a different time slot while keeping all other exams unchanged. This produces a neighbouring solution that the Simulated Annealing algorithm can evaluate.
+The function `generate_neighbor()` creates a new timetable by randomly selecting one exam and assigning it to a different time slot.
+This produces a slightly modified solution from the current timetable.
 
-Q3. In `run_sa()`, there is this line:
-if delta < 0 or random.random() < math.exp(-delta / T):
-What does this line decide? Why does SA sometimes accept a worse solution?
+---
 
-This line decides whether the algorithm should accept the new timetable. If the new solution has fewer clashes (delta < 0), it is always accepted. If the solution is worse, it may still be accepted with a probability based on the temperature T. This helps Simulated Annealing escape local minimum solutions and explore better possibilities.
+### Q3. Why does SA sometimes accept a worse solution?
+
+The condition
+`if delta < 0 or random.random() < math.exp(-delta / T)`
+decides whether to accept a new solution.
+
+If the new solution is better, it is always accepted.
+If it is worse, it may still be accepted with a probability depending on temperature.
+
+This allows the algorithm to escape local minima and explore better solutions.
 
 ---
 
 ## Experiment 1 — Baseline Run
 
-Instructions: Run the program without changing anything.
-python sa_timetable.py
+| Metric                         | Value |
+| ------------------------------ | ----- |
+| Number of iterations completed | 1379  |
+| Clashes at iteration 1         | 12    |
+| Final best clashes             | 3     |
+| Did SA reach 0 clashes?        | No    |
 
-Fill in this table:
+---
 
-| Metric | Your result |
-|--------|-------------|
-| Number of iterations completed | 1379|
-| Clashes at iteration 1 | 12|
-| Final best clashes | 3|
-| Did SA reach 0 clashes? (Yes / No) | No|
+### Final Timetable
 
-Copy the printed timetable output here:
- Final Timetable
-------------------------------------------
-  Slot 1:  Geography
-  Slot 2:  Chemistry, English   
-  Slot 3:  History, Computer Science, Economics
-  Slot 4:  Biology, Statistics  
-  Slot 5:  Mathematics, Physics 
-  Total clashes : 3
+Slot 1: Geography
+Slot 2: Chemistry, English
+Slot 3: History, Computer Science, Economics
+Slot 4: Biology, Statistics
+Slot 5: Mathematics, Physics
 
-Look at `plots/experiment_1.png` and describe what you see (2–3 sentences).  
-*Where does the biggest drop in clashes happen? Does the curve flatten out?*
-The plot shows that the number of clashes decreases significantly during the early iterations. The largest drop happens in the initial phase when the algorithm explores many possible schedules. After some iterations the curve starts flattening, indicating that improvements become smaller. In this run the algorithm reduced clashes from 12 to 3 but did not reach a perfect timetable.
+Total clashes: 3
+
+---
+
+### Plot Observation
+
+The graph shows a rapid decrease in clashes during the early iterations.
+The biggest drop occurs at the beginning when the algorithm explores many solutions.
+Later, the curve flattens, indicating slow improvement and convergence.
 
 ---
 
 ## Experiment 2 — Effect of Cooling Rate
 
-Instructions: In sa_timetable.py, find the # EXPERIMENT 2 block in __main__.  
-Copy it three times and run with cooling_rate = 0.80, 0.95, and 0.995.  
-Save plots as experiment_2a.png, experiment_2b.png, experiment_2c.png.
+| cooling_rate | Final clashes | Iterations completed | Reached 0 clashes |
+| ------------ | ------------- | -------------------- | ----------------- |
+| 0.80         | 8             | 40                   | No                |
+| 0.95         | 3             | 90                   | No                |
+| 0.995        | 3             | 1379                 | No                |
 
-Results table:
+---
 
-| cooling_rate | Final clashes | Iterations completed | Reached 0 clashes? |
-|-------------|---------------|----------------------|--------------------|
-| 0.80        |         8      |       ~40               |        NO            |
-| 0.95        |          3     |         ~90             |       NO             |
-| 0.995       |           3    |         1379             |       NO             |
+### Observation
+
+A lower cooling rate (0.80) cools quickly and results in poor solutions.
+A higher cooling rate (0.995) allows more exploration and gives better results.
+Thus, slower cooling leads to better optimization performance.
+
+---
+
+## Final Answers
+
+**Does SA always reach 0 clashes?**
+No, it depends on parameters and randomness.
+
+**Which cooling rate performed best?**
+0.995 performed best because it produced the lowest clashes.
+
+---
