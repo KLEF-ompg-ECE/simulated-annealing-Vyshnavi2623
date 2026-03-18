@@ -1,82 +1,112 @@
 # Assignment 1 — Simulated Annealing: Exam Timetable Scheduling
-
 ## Observation Report
 
-Student Name : BonBon Vyshnavi
-Student ID : 2310040012
-Date Submitted : 17-03-2026
+Student Name  : _____________________
+Student ID    : _____________________
+Date Submitted: _____________________
+
+---
+
+## How to Submit
+
+1. Run each experiment following the instructions below
+2. Fill in every answer box — do not leave placeholders
+3. Make sure the plots/ folder contains all required images
+4. Commit this README and the plots/ folder to your GitHub repo
 
 ---
 
 ## Before You Begin — Read the Code
 
+Open sa_timetable.py and read through it. Then answer these questions.
+
 Q1. What does `count_clashes()` measure? What value means a perfect timetable?
 
-count_clashes() measures the number of exam clashes where a student has more than one exam in the same slot.
-A value of 0 means a perfect timetable.
+```
+YOUR ANSWER
+```
 
----
+Q2. What does `generate_neighbor()` do? How is the new timetable different from the current one?
 
-Q2. What does `generate_neighbor()` do? How is the new timetable different?
+```
+YOUR ANSWER
+```
 
-generate_neighbor() creates a new timetable by moving one exam to a different slot.
-The new timetable differs from the current one by one exam assignment.
+Q3. In `run_sa()`, there is this line:
+if delta < 0 or random.random() < math.exp(-delta / T):
+What does this line decide? Why does SA sometimes accept a worse solution?
 
----
-
-Q3. What does this line decide?
-
-if delta < 0 or random.random() < math.exp(-delta / T)
-
-This decides whether to accept a new solution.
-Better solutions are always accepted.
-Worse solutions are sometimes accepted based on probability to escape local minima.
+```
+YOUR ANSWER
+```
 
 ---
 
 ## Experiment 1 — Baseline Run
 
-| Metric                             | Your result |
-| ---------------------------------- | ----------- |
-| Number of iterations completed     | 1379        |
-| Clashes at iteration 1             | 12          |
-| Final best clashes                 | 3           |
-| Did SA reach 0 clashes? (Yes / No) | No          |
+Instructions: Run the program without changing anything.
+```
+python sa_timetable.py
+```
 
----
+Fill in this table:
 
-Final Timetable
+| Metric | Your result |
+|--------|-------------|
+| Number of iterations completed | |
+| Clashes at iteration 1 | |
+| Final best clashes | |
+| Did SA reach 0 clashes? (Yes / No) | |
 
-Slot 1: Geography
-Slot 2: Chemistry, English
-Slot 3: History, Computer Science, Economics
-Slot 4: Biology, Statistics
-Slot 5: Mathematics, Physics
+Copy the printed timetable output here:
 
-Total clashes : 3
+```
+PASTE OUTPUT
+```
 
----
+Look at `plots/experiment_1.png` and describe what you see (2–3 sentences).  
+*Where does the biggest drop in clashes happen? Does the curve flatten out?*
 
-Plot Observation
-
-The clashes decrease rapidly in early iterations.
-The curve later flattens showing convergence.
+```
+YOUR OBSERVATION
+```
 
 ---
 
 ## Experiment 2 — Effect of Cooling Rate
 
+Instructions: In sa_timetable.py, find the # EXPERIMENT 2 block in __main__.  
+Copy it three times and run with cooling_rate = 0.80, 0.95, and 0.995.  
+Save plots as experiment_2a.png, experiment_2b.png, experiment_2c.png.
+
+Results table:
+
 | cooling_rate | Final clashes | Iterations completed | Reached 0 clashes? |
-| ------------ | ------------- | -------------------- | ------------------ |
-| 0.80         | 8             | 40                   | No                 |
-| 0.95         | 3             | 90                   | No                 |
-| 0.995        | 3             | 1379                 | No                 |
+|-------------|---------------|----------------------|--------------------|
+| 0.80        | | | |
+| 0.95        | | | |
+| 0.995       | | | |
+
+Compare the three plots and describe the effect of cooling_rate:
+
+```
+YOUR OBSERVATION
+```
+
+Which cooling_rate gave the best result?
+
+```
+YOUR ANSWER
+```
 
 ---
 
-Observation
+## Summary — Reflection
 
-Lower cooling rate gives faster but worse results.
-Higher cooling rate gives better optimization.
+What was the most important thing you learned about Simulated Annealing?
+
+```
+YOUR REFLECTION
+```
 
 ---
